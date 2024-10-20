@@ -1,0 +1,100 @@
+BEGIN
+DECLARE bsoderror : STRING
+DECLARE user_bsoderror : STRING
+DECLARE bsod_error_length : INTEGER
+DECLARE count_bsoderror : INTEGER
+DECLARE count_username : INTEGER
+DECLARE count_password : INTEGER
+DECLARE bsod_error_correct : BOOLEAN
+DECLARE username_correct : BOOLEAN
+DECLARE password_correct : BOOLEAN
+bsoderror ← "0x"
+count_bsoderror ← 0
+count_username ← 0
+count_password ← 0
+bsod_error_length ← 10
+
+
+OUTPUT "Please enter the username"
+REPEAT
+INPUT username
+FOR EACH character IN username
+       username ← username + 1
+   ENDFOR
+IF count_username >= 1  OR count_username <= 8
+   THEN
+       username_correct ← TRUE
+   ELSE
+       OUTPUT "Incorrect Username, Please enter again."
+ENDIF
+UNTIL username_correct = TRUE
+
+
+
+
+OUTPUT "Please enter the password"
+REPEAT
+INPUT password
+FOR EACH character IN password
+       count_password ← count_password + 1
+   ENDFOR
+IF count_password >= 8  OR ccount_password <= 256
+   THEN
+       password_correct ← TRUE
+   ELSE
+       OUTPUT "Incorrect Password, Please enter again."
+ENDIF
+UNTIL password_correct = TRUE
+
+
+
+
+OUTPUT "Please enter your BSOD error: "
+REPEAT
+INPUT user_bsoderror
+FOR EACH character IN user_bsoderror
+       count_bsoderror ← count_bsoderror + 1
+   ENDFOR
+IF first two characters of user_bsoderror = bsoderror
+    THEN
+       IF user_bsoderror = bsod_error_length
+           THEN
+               OUTPUT "Continuing With trouble shooting"
+                   bsod_error_correct ← TRUE
+           ELSE
+               OUTPUT "BSOD error code invalid, please enter your BSOD error code again."
+               INPUT user_bsoderror
+       ENDIF
+  ELSE
+       OUTPUT "BSOD error code invalid, please enter your BSOD error code again."
+       INPUT user_bsoderror
+       INPUT user_bsoderror
+ENDIF
+UNTIL bsod_error_correct = TRUE
+
+
+bsod_errors ← DICTIONARY
+   "0x0000000A" : "IRQL_NOT_LESS_OR_EQUAL, Meaning: This error indicates that a driver or system process attempted to access memory that it was not allowed to. Cause: Typically caused by faulty drivers, incompatible software, or hardware issues such as malfunctioning RAM."
+   "0x0000001A" : "MEMORY_MANAGEMENT, Meaning: Indicates that there is a problem with the memory management system. Causes: Usually results from faulty RAM or issues with drivers that manage memory."
+
+
+OUTPUT bsod_errors[user_bsoderror]
+
+
+
+
+SET bsod_error_script AS DICTIONARY
+  "0x0000000A" : "verifier /standard /all"
+  "0x0000001A" : "mdsched"
+
+
+
+
+OUTPUT "Enter this command into CMD", bsod_error_script[user_bsoderror]
+
+
+
+
+diskcleanup ← "sfc /scannow"
+OUTPUT "Enter this command into cmd:", diskcleanup
+END
