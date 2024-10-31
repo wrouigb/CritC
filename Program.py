@@ -65,10 +65,18 @@ while True:
     else:
         print("BSOD error code invalid")  # Prompt for re-entry if invalid
 
-# Print the description of the entered BSOD error code
-print(bsod_errors[user_bsoderror])
+
+if user_bsoderror in (bsod_errors):
+    print(bsod_errors[user_bsoderror])
+else:
+    print("User BSOD error is currently not in the database")
 
 print("Enter these commands into CMD:", diskcleanup)  # Instruct user on what to input into windows Command Prompt
 
-# Print the command associated with the entered BSOD error code
-print("Enter these commands into CMD:", bsod_error_script[user_bsoderror])
+if user_bsoderror in (bsod_error_script):
+    print("Enter these commands into CMD:", bsod_error_script[user_bsoderror])
+else:
+    print("There is currently not a prompt to help correct your BSOD error")
+
+
+
