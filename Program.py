@@ -1,3 +1,4 @@
+import re
 # Prompt the user to enter a username
 print("Please enter the username :")
 
@@ -5,7 +6,7 @@ print("Please enter the username :")
 while True:
     username = input()  # Get input from the user
     # Check if the username length is between 1 and 8 characters
-    if 1 <= len(username) <= 8:
+    if 1 <= len(username) <= 20 and re.match("^[a-zA-Z0-9'!#$%&()*,./:;?@^_`{|}~+<=>$]*$", username):
         break  # Exit the loop if the username is valid
     else:
         print("Incorrect Username, Please enter again :")  # Prompt for re-entry if invalid
@@ -17,7 +18,7 @@ print("Please enter the password:")
 while True:
     password = input()  # Get input from the user
     # Check if the password length is between 8 and 256 characters
-    if 8 <= len(password) <= 256:
+    if 8 <= len(password) <= 256 and re.match("^[a-zA-Z0-9'!#$%&()*,./:;?@^_`{|}~+<=>$]*$", password):
         break  # Exit the loop if the password is valid
     else:
         print("Incorrect Password, Please enter again :")  # Prompt for re-entry if invalid
