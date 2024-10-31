@@ -60,7 +60,7 @@ bsod_errors = {
     "0x00000133": "DPC_WATCHDOG_VIOLATION, Meaning: This error indicates there was an error within the system clock of the system. Cause: This error is usually caused by a Driver conflict where there are multiple installations of a driver doing similar routines.",
     "0x00000024": "NTFS_FILE_SYSTEM, Meaning: There is an error in a file called ntfs.sys, which allows the system to read and write onto the disk. Cause: This is caused by the NTFS file system which is primarily caused by corruption or a malfunction.",
     "0x00000139": "KERNEL_SECURITY_CHECK_FAILURE, Meaning: This error indicates that the kernel has detected the corruption of a critical data structure. Cause: This is caused by an error within the drivers which set off the error, or a problem with the physical RAM leading to an incorrect memory allocation."
-    }
+	}
 
 # Print the description of the entered BSOD error code
 print(bsod_errors[user_bsoderror])
@@ -89,4 +89,4 @@ bsod_error_script = {
     }
 
 # Print the command associated with the entered BSOD error code
-print(bsod_error_script[user_bsoderror])
+print("Enter these commands into CMD:", bsod_error_script[user_bsoderror])
