@@ -42,15 +42,13 @@ bsod_error_script = {
 diskcleanup = "(sfc /scannow) and (chkdsk c:/r)"
 
 username = input("Please enter the username: ")  # Prompt user to enter username and capture input as username variable
-while not 1 <= len(username) <= 20 and re.match("^[a-zA-Z0-9'!#$%&()*,./:;?@^_`{|}~+<=>$]*$",
-                                                username):  # Loop to promt user for new username until the input meets set conditions
+while not 1 <= len(username) <= 20 or not re.match("^[a-zA-Z0-9'!#$%&()*,./:;?@^_`{|}~+<=>$]*$", username):  # Loop to promt user for new username until the input meets set conditions
     username = input("Incorrect Username, Please enter again: ")
 
 password = input("Please enter the password: ")  # Prompt user to enter password and capture input as username variable
-while not 8 <= len(password) <= 256 and re.match("^[a-zA-Z0-9'!#$%&()*,./:;?@^_`{|}~+<=>$]*$",
-                                                 password):  # Loop to promt user for new password until the input meets set conditions
+while not 8 <= len(password) <= 256 or not re.match("^[a-zA-Z0-9'!#$%&()*,./:;?@^_`{|}~+<=>$]*$", password):  # Loop to promt user for new password until the input meets set conditions
     password = input("Incorrect Password, Please enter again :")
-
+    
 # Loop until a valid BSOD error code is entered
 while True:
     user_bsoderror = input("Please enter your BSOD error: ")  # Get input from the user
@@ -65,7 +63,6 @@ while True:
     else:
         print("BSOD error code invalid")  # Prompt for re-entry if invalid
 
-
 if user_bsoderror in (bsod_errors):
     print(bsod_errors[user_bsoderror])
 else:
@@ -77,6 +74,3 @@ if user_bsoderror in (bsod_error_script):
     print("Enter these commands into CMD:", bsod_error_script[user_bsoderror])
 else:
     print("There is currently not a prompt to help correct your BSOD error")
-
-
-
